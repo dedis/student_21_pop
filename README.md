@@ -1,33 +1,160 @@
-# student20_pop
-Proof-of-personhood, fall 2020
+# EPFL thesis/project report LaTeX template
 
-Note that the main work in this repository is to be done
-in the context of the following front-end and back-end branches:
+Template for IC EPFL (BSc, MSc, or doctoral) theses and semester projects.
+The template contains a rough structure with some hints for systems-oriented
+projects but the same structure is easily adaptable to other research
+projects as well.
 
-* [fe1-web](https://github.com/dedis/student20_pop/tree/fe1-web): Web-based front-end implementation in ReactJS
-* [fe2-android](https://github.com/dedis/student20_pop/tree/fe2-android): Android native front-end implementation in Java or Scala (TBD)
-* [fe3-ios](https://github.com/dedis/student20_pop/tree/fe3-ios): Optional iOS native front-end implementation in Swift
-* [be1-go](https://github.com/dedis/student20_pop/tree/be1-go): Back-end implementation in Go
-* [be2-scala](https://github.com/dedis/student20_pop/tree/be2-scala): Back-end implementation in Scala
+Check out [the compiled example document](./sample.pdf) if you want to see how
+it is rendered.
 
-These branches were intentionally initialized as fresh Git repositories
-with unrelated histories,
-so that Git will complain about attempts to cross-merge them.
-Please do not attempt merges from one branch to another (for now),
-without careful consideration and discussion!
-Treat them as if they were entirely separate and unrelated repositories for now.
-We may develop a process for eventually merging them
-into one ultimate, stable "master" repository
-combining all the front-end and back-end builds, but that's for later if at all.
 
-Everyone working on the project,
-please create your own private "working" branches as needed
-by forking the appropriate `fe*` or `be*` branch(es) you’re working on,
-using the naming convention
-`work-(fe*|be*)-<yourname>[-optional-variant]`.
-For example,
-a branch I create to contribute to the `fe1-web` project
-might be called `work-fe1-bford` by default,
-or `work-fe1-bford-random-experiment` if I need an additional temporary branch
-for a random experiment for example.
+# License and acknowledgement
 
+The source code and LaTeX package is licensed under the LPPL. This work may be
+distributed and/or modified under the conditions of the LaTeX Project Public
+License, either version 1.3 of this license or (at your option) any later
+version. The latest version of this license is in
+http://www.latex-project.org/lppl.txt
+
+We would appreciate if you acknowledge the use of this template and where you
+got it from in your report.
+
+
+# Contact
+
+Contact [Mathias Payer](mailto:mathias.payer@epfl.ch) with bug reports or 
+questions.
+
+
+# Prerequisites
+
+Make sure you have the necessary LaTeX packages installed. For Ubuntu/Debian,
+the installation instructions are as follows:
+
+```
+sudo apt install make texlive-base texlive-bibtex-extra texlive-latex-base \
+                 texlive-latex-extra texlive-latex-recommended \
+                 texlive-science texlive-lang-german texlive-lang-french \
+                 texlive-bibtex-extra biber rubber
+```
+
+
+# Editing
+
+You will edit the files `thesis.tex` (this is where you write your report) 
+and `thesis.bib` (this is where you add all your references). Add figures in
+a `./figures` directory. To create the PDF of your thesis, run `make`.
+
+
+# Writing Tips
+
+Writing is hard. Here, have some help.
+
+
+## I. Punctuation
+
+1. Use the Oxford comma for enumerations: We talk about a, b, and c (see the
+   comma before and)
+2. We use commas around e.g. and i.e.: foo, e.g., or, i.e., bar
+3. `This is a sentence with a footnote\footnote{In the footnote we use a full
+   sentence as well.}.`
+
+
+## II. Weasel words and bad writing
+
+1. Never use "is able to", "is not able to". These expressions can always be
+   removed
+2. Don't use passive voice (or minimize passive voice as much as possible)
+3. Don't use abbreviations (no don't won't it's) in a paper
+4. Don't use [weasel words](https://en.wikipedia.org/wiki/Weasel_word)
+   (Up to sixty percent, Clearly, The vast majority)
+5. Run a spell check and grammar check on the document before every commit
+6. Don't use **Discuss about** 
+   [link](https://english.stackexchange.com/questions/146833/is-discuss-about-grammatically-incorrect)
+7. For the "Related Work" section, use consistency. Always cite the work after
+   introducing the name
+8. Always add a space after parentheses "foo (bar)", not "foo(bar)", this is
+   not a function call!
+9. Be careful about the correct spelling of benchmark and other systems:
+   SPEC CPU2006
+
+
+## III. LaTeX do's and don'ts
+
+1. Use `\autoref` not `\ref` when referring to a section. When you refer to a
+   specific section add `label{sec:mysec}` and then refer to it as
+   `\autoref{sec:mysec}`. LaTeX will turn this into, e.g., `Section 2`.
+   Same goes for Figures, Tables, or Listings.
+2. Use a non-breaking space (`\~`) before, e.g., `\cite (foo\~\cite{bar})`, 
+   `\autoref` as in `foo\~\autoref{fig:foo}`; don't use a breaking space ` `
+   before a non-breaking space as this defeats the purpose of non-breaking
+   spaces. Do not use non-breaking spaces for free standing text such as
+   `XXX. \autoref{fig:foo} shows...`.
+3. For providing inline comments while iterating over the paper, 
+   you can use the `todonotes` LaTex package. This allows for turning off the
+   comments using a simple disable flag. Sample provided below:
+   ```latex
+    \usepackage[disable]{todonotes} %disables all todonotes
+    \newcommand{\ali}[1]{\todo[inline,color=red!40]{alice: #1}} % inline comment block
+   ```
+4. Use \emph while introducing keywords and for proper nouns, e.g.,
+   `\emph{Control-Flow Integrity} (CF)`
+
+
+## IV. Paper writing
+
+1. Start with an outline of the paper
+2. For each section/subsection outline each paragraph and what you want to
+   say. Keep this information as comment above the paragraphs
+3. Continue to expand (write text for the individual paragraphs) and compact
+   (condense the text to remove fluff), then expand again to figure out a
+   better wording.
+4. Figures are important, each major concept should be described through a
+   self-explaining Figure; take care of reasonable captions!
+5. Tables and graphs are important too, take care to show the advantages of
+   your system; make sure the captions are helpful!
+6. Goal: someone reading just the outline and looking at the Figures/Graphs
+   should get a good idea what the paper is about.
+
+
+## V. Benchmarking
+
+1. Always use all programs in a benchmark set, report the full performance
+   overhead
+2. Memory overhead may be important too
+3. For figures: show the baseline, start x/y axis at 0, show label axes
+4. When presenting results in a table: (i) right align numbers, left align
+   text, (ii) use commas as delimeter for large numbers: 1,000,000; not
+   1000000, (iii) label your columns/rows, (iv) the caption should explain any
+   abbreviations, (v) the table must be referenced in text, explaining the
+   main take-away but not just repeating results.
+
+
+## VI. Discussing Related Work
+
+Think who is the most likely expert reviewer of your paper. How critically
+should you discuss their work? Orthogonally, their work is already published
+and contributed to the field. Always talk about related work in a positive
+way. Highlight the positive aspects when you introduce related work, then
+iterate over why your work is different.
+
+Foo et al. introduced the first zero-overhead CFI instrumentation based on an
+optimized set `check\~\cite{FoosWork}`. While `\sysname` leverages a similar
+runtime check, it combines a static analysis with a dynamic modification
+scheme that allows on-the-fly adjustments of target sets while Foo's target
+sets were purely static.
+
+## VII. Repositories and Linting
+
+Note that these are hard rules that we will enforce in the group :)
+
+* Push your code to a git repository, add a link to this repository in your
+  slack channel and/or in the wiki of the project
+* Add a `Makefile` that builds the paper with `rubber` (or `pdflatex`).
+  The repository contains an example `Makefile`.
+* Always use vector images, never rasterize (i.e., no JPG/PNG but rather
+  export to PDF then embed PDF)
+* The full text of the paper is in a single file for easier editing/searching
+  (the repository will take care of merging)
+* Break lines at 80 characters
