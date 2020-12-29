@@ -5,7 +5,7 @@ The template contains a rough structure with some hints for systems-oriented
 projects but the same structure is easily adaptable to other research
 projects as well.
 
-Check out [the compiled example document](./sample.pdf) if you want to see how
+Check out [the compiled example document](https://github.com/HexHive/thesis_template/blob/master/sample.pdf) if you want to see how
 it is rendered.
 
 
