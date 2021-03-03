@@ -31,6 +31,8 @@ public class JsonMessageGeneralSerializer
     byte[] sender = Base64.getDecoder().decode(root.get("sender").getAsString());
     byte[] signature = Base64.getDecoder().decode(root.get("signature").getAsString());
 
+    String s = root.get("signature").getAsString();
+
     PublicKeyVerify verifier = new Ed25519Verify(sender);
     try {
       verifier.verify(signature, dataBuf);

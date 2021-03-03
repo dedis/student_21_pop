@@ -1,6 +1,8 @@
 package com.github.dedis.student20_pop.model.network.method.message.data.rollcall;
 
 import androidx.annotation.Nullable;
+
+import com.github.dedis.student20_pop.model.event.EventType;
 import com.github.dedis.student20_pop.model.network.method.message.data.Action;
 import com.github.dedis.student20_pop.model.network.method.message.data.Data;
 import com.github.dedis.student20_pop.model.network.method.message.data.Objects;
@@ -45,7 +47,7 @@ public class CreateRollCall extends Data {
     this.startType = startType;
     this.location = location;
     this.description = description;
-    this.id = Hash.hash("R", laoId, Long.toString(creation), name);
+    this.id = Hash.hash(EventType.ROLL_CALL.getSuffix(), laoId, Long.toString(creation), name);
   }
 
   public CreateRollCall(

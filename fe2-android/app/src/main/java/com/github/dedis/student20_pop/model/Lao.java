@@ -1,5 +1,7 @@
 package com.github.dedis.student20_pop.model;
 
+import com.github.dedis.student20_pop.model.event.RollCall;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -47,22 +49,6 @@ public final class Lao {
     return Optional.ofNullable(rollCalls.get(id));
   }
 
-  public Long getLastModified() {
-    return lastModified;
-  }
-
-  public Set<String> getWitnesses() {
-    return witnesses;
-  }
-
-  public Set<PendingUpdate> getPendingUpdates() {
-    return pendingUpdates;
-  }
-
-  public String getOrganizer() {
-    return organizer;
-  }
-
   public String getChannel() {
     return channel;
   }
@@ -87,6 +73,10 @@ public final class Lao {
     this.name = name;
   }
 
+  public Long getLastModified() {
+    return lastModified;
+  }
+
   public void setLastModified(Long lastModified) {
     this.lastModified = lastModified;
   }
@@ -97,6 +87,10 @@ public final class Lao {
 
   public void setCreation(Long creation) {
     this.creation = creation;
+  }
+
+  public String getOrganizer() {
+    return organizer;
   }
 
   public void setOrganizer(String organizer) {
@@ -111,8 +105,16 @@ public final class Lao {
     this.modificationId = modificationId;
   }
 
+  public Set<String> getWitnesses() {
+    return witnesses;
+  }
+
   public void setWitnesses(Set<String> witnesses) {
     this.witnesses = witnesses;
+  }
+
+  public Set<PendingUpdate> getPendingUpdates() {
+    return pendingUpdates;
   }
 
   public void setPendingUpdates(Set<PendingUpdate> pendingUpdates) {

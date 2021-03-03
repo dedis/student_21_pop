@@ -1,6 +1,5 @@
-package com.github.dedis.student20_pop.model;
+package com.github.dedis.student20_pop.model.event;
 
-import com.github.dedis.student20_pop.model.event.Event;
 import java.util.HashSet;
 import java.util.Set;
 

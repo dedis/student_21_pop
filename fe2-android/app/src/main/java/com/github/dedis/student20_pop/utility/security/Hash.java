@@ -34,30 +34,4 @@ public class Hash {
       return "";
     }
   }
-
-  private static String esc(String input) {
-    return input.replace("\\", "\\\\").replace("\"", "\\\"");
-  }
-
-  /**
-   * Hash a data using SHA256.
-   *
-   * @param data to hash
-   * @return the hashed data or null if failed to hash
-   * @throws IllegalArgumentException if the data is null
-   */
-  @Deprecated
-  protected static String hash(String data) {
-    if (data == null) throw new IllegalArgumentException("Can't hash a null data");
-
-    try {
-      MessageDigest digest = MessageDigest.getInstance("SHA-256");
-      byte[] hash = digest.digest(data.getBytes(StandardCharsets.UTF_8));
-      return Base64.getEncoder().encodeToString(hash);
-    } catch (NoSuchAlgorithmException e) {
-      Log.e(Hash.TAG, "Failed to hash data", e);
-      e.printStackTrace();
-      return null;
-    }
-  }
 }

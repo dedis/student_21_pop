@@ -5,7 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import com.github.dedis.student20_pop.model.Lao;
 import com.github.dedis.student20_pop.model.PendingUpdate;
-import com.github.dedis.student20_pop.model.RollCall;
+import com.github.dedis.student20_pop.model.event.RollCall;
 import com.github.dedis.student20_pop.model.network.GenericMessage;
 import com.github.dedis.student20_pop.model.network.answer.Answer;
 import com.github.dedis.student20_pop.model.network.answer.Error;

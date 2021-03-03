@@ -1,4 +1,4 @@
-package com.github.dedis.student20_pop.model;
+package com.github.dedis.student20_pop.model.delete;
 
 public class KeysTest {
 

@@ -1,5 +1,7 @@
 package com.github.dedis.student20_pop.utility.security;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
 
@@ -9,8 +11,8 @@ public class HashTest {
 
   @Test
   public void hashNullDataTest() {
-    assertThrows(IllegalArgumentException.class, () -> Hash.hash((String) null));
-    assertThrows(IllegalArgumentException.class, () -> Hash.hash(null, null));
+    assertThrows(NullPointerException.class, () -> Hash.hash(null));
+    assertThrows(NullPointerException.class, () -> Hash.hash(null, null));
   }
 
   @Test
@@ -19,9 +21,7 @@ public class HashTest {
   }
 
   @Test
-  public void hashObjectTest() {
-    // Hashing : test 0 \fwa"fwa-fwa
-    String expected = Hash.hash("[\"test\",\"0\",\"\\\\fwa\\\"fwa-fwa\"]");
-    //    assertThat(Hash.hash("test", 0, "\\fwa\"fwa-fwa"), is(expected));
+  public void escapingTest() {
+    assertNotEquals(Hash.hash("test", "10"), Hash.hash("test10"));
   }
 }
