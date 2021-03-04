@@ -5,7 +5,8 @@ import (
 )
 
 func sendVote(laoId string, electionId string, database string, vote string) error{
-	channelId := []byte("root/"+ laoId +"/"+ electionId)
+	// TODO : check if laoId and electionId can be inferred
+	channelId := []byte("/root/"+ laoId +"/"+ electionId)
 	electionChannel := GetChannel(channelId, database)
 	//Data should be in the channel, once the users are
 	// subscribed they can see the data written inside it by
