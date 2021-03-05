@@ -1,6 +1,5 @@
 package com.github.dedis.student20_pop.utility.security;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
@@ -11,7 +10,6 @@ public class HashTest {
 
   @Test
   public void hashNullDataTest() {
-    assertThrows(NullPointerException.class, () -> Hash.hash(null));
     assertThrows(NullPointerException.class, () -> Hash.hash(null, null));
   }
 

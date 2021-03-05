@@ -1,8 +1,7 @@
 package com.github.dedis.student20_pop.utility.network;
 
 /**
- * Test that the protocol handles correctly and sends messages. Also test the CompletableFuture
- * system and timeouts
+ * Test that the protocol handles correctly and sends messages.
  */
 public class ProtocolTest {
 

@@ -14,7 +14,6 @@ public final class Result extends Answer {
    * Constructor of a Result
    *
    * @param id of the answer
-   * @param result of the answer
    */
   public Result(int id) {
     super(id);
