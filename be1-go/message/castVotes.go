@@ -1,13 +1,14 @@
-package db
+package message
 
-import (
+import "student20_pop/db"
 
-)
 
+//A LAO member is a client or organizer that is subscribed to the LAO channel
+// so in theory there should be a way for the member to know the LAO ids
 func sendVote(laoId string, electionId string, database string, vote string) error{
 	// TODO : check if laoId and electionId can be inferred
 	channelId := []byte("/root/"+ laoId +"/"+ electionId)
-	electionChannel := GetChannel(channelId, database)
+	electionChannel := db.GetChannel(channelId, database)
 	//Data should be in the channel, once the users are
 	// subscribed they can see the data written inside it by
 	//a LAO member ----> it's response

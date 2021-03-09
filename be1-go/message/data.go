@@ -30,6 +30,9 @@ var (
 
 	// RollCallObject represents a "roll call" message data.
 	RollCallObject DataObject = "roll_call"
+
+	//ElectionObject represents a "election" message data
+	ElectionObject DataObject = "election"
 )
 
 // DataAction represents the type for the "action" key associated with the
