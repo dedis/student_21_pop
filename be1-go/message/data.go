@@ -273,6 +273,16 @@ type WitnessMessageData struct {
 	MessageID []byte    `json:"message_id"`
 	Signature Signature `json:"signature"`
 }
+// ADED FOR ELECTION ************************************
+type ElectionDataAction DataAction
+
+var(
+	SetupAction ElectionDataAction = "setup"
+	CastVoteAction ElectionDataAction = "cast_vote"
+)
+
+//-------------------------------------------------------
+
 
 // NewCreateLAOData returns an instance of `CreateLAOData`.
 func NewCreateLAOData(name string, creation Timestamp, organizer PublicKey, witnesses []PublicKey) (*CreateLAOData, error) {

@@ -98,3 +98,12 @@ func (c *baseChannel) verifyPublishMessage(publish message.Publish) error {
 
 	return nil
 }
+
+
+func (c *baseChannel) Publish(publish message.Publish) error{
+	if err := c.verifyPublishMessage(publish); err != nil{
+		return err
+	}
+
+	//TODO: implement
+}
