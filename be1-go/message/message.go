@@ -135,7 +135,9 @@ func (m *Message) VerifyAndUnmarshalData() error {
 	// ADDED FOR NEW DATA OBJECT TYPE FOR ELECTION
 	case DataObject(ElectionObject):
 		err := m.parseElectionData(ElectionDataAction(action), m.RawData)
-		if err != nil : xerrors.Errorf("error parsing election data %v", err)
+		if err != nil {
+			xerrors.Errorf("error parsing election data %v", err)
+		}
 	//*******************************************
 	default:
 		return xerrors.Errorf("failed to parse data object of type: %s", gd.GetObject())
@@ -267,7 +269,16 @@ func (m *Message) parseElectionData(action ElectionDataAction, data[]byte) error
 	case SetupAction:
 		//TODO: implement
 	case CastVoteAction:
-		//TODO:implement
+		cast := &CastVoteData{}
+
+		err := json.Unmarshal(data,cast)
+		if err != nil {
+			return xerrors.Errorf("failed to parse cast vote data : %v", err)
+		}
+		// TODO: check if message creation time is passed end of election
+		// TODO: update votes if same client sent multiple votes
+		m.Data = cast
+		return  nil
 	default:
 		return xerrors.Errorf("invalid action : %s", action)
 	}

@@ -1,7 +1,7 @@
 package message
 
 import "student20_pop/db"
-
+//USELESS FILE WRONG LEAD TODO:: DELEEEETE
 
 //A LAO member is a client or organizer that is subscribed to the LAO channel
 // so in theory there should be a way for the member to know the LAO ids

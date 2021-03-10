@@ -280,6 +280,30 @@ var(
 	SetupAction ElectionDataAction = "setup"
 	CastVoteAction ElectionDataAction = "cast_vote"
 )
+//Data type for cast votes
+type CastVoteData struct {
+	*GenericData
+	LAOId []byte `json:"lao"`
+	ElectionId []byte `json:"election"`
+	CreatedAt Timestamp `json:creation_at`
+	Votes  //TODO: check what to put here `json:"votes"`
+
+
+
+
+}
+//Data type for election setup
+type ElectionSetupData struct {
+	*GenericData
+	ID []byte `json:"id"`
+	LAOId []byte `json:"lao"`
+	Name string `json:"name"`
+	Version string `json:"version"`
+	CreatedAt Timestamp `json:"created_at"`
+	StartTime Timestamp `json:"start_time"`
+	EndTime Timestamp `json:"end_time"`
+	Questions  //TODO: check what to put here `json:"questions"`
+}
 
 //-------------------------------------------------------
 

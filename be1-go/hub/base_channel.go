@@ -107,9 +107,8 @@ func (c *baseChannel) VerifyPublishMessage(publish message.Publish) error {
 
 
 func (c *baseChannel) Publish(publish message.Publish) error{
-	if err := c.verifyPublishMessage(publish); err != nil{
+	if err := c.VerifyPublishMessage(publish); err != nil{
 		return err
 	}
 
-	//TODO: implement
 }
