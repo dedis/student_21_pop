@@ -16,8 +16,8 @@ import androidx.annotation.Nullable;
 import com.github.dedis.student20_pop.databinding.FragmentCreateRollCallEventBinding;
 import com.github.dedis.student20_pop.detail.LaoDetailActivity;
 import com.github.dedis.student20_pop.detail.LaoDetailViewModel;
+import com.github.dedis.student20_pop.model.RollCall;
 import com.github.dedis.student20_pop.model.event.EventType;
-import com.github.dedis.student20_pop.model.network.method.message.data.rollcall.CreateRollCall;
 
 import java.time.Instant;
 
@@ -133,17 +133,17 @@ public final class RollCallEventCreationFragment extends AbstractEventCreationFr
         long start = startTimeInSeconds > now ? 0 : startTimeInSeconds;
         long scheduled = startTimeInSeconds >= now ? startTimeInSeconds : 0;
 
-        String id = mLaoDetailViewModel.createNewRollCall(
+        RollCall rollCall = mLaoDetailViewModel.createNewRollCall(
                 rollCallTitleEditText.getText().toString(),
                 mFragBinding.rollCallEventDescriptionText.getText().toString(),
                 start,
                 scheduled);
 
-        if(id == null) {
+        if(rollCall == null) {
             Toast.makeText(getActivity(), "Something went wrong, try again later.", Toast.LENGTH_LONG).show();
         }
 
-        return id;
+        return rollCall.getId();
     }
 
     private void openRollCall(String rollCallId) {

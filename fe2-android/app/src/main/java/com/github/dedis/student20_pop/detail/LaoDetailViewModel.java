@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.solver.ArrayLinkedVariables;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,6 +12,7 @@ import androidx.lifecycle.Transformations;
 
 import com.github.dedis.student20_pop.Event;
 import com.github.dedis.student20_pop.model.Lao;
+import com.github.dedis.student20_pop.model.RollCall;
 import com.github.dedis.student20_pop.model.data.LAORepository;
 import com.github.dedis.student20_pop.model.event.EventType;
 import com.github.dedis.student20_pop.model.network.answer.Result;
@@ -28,6 +30,7 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Observable;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -58,11 +61,14 @@ public class LaoDetailViewModel extends AndroidViewModel {
   private final MutableLiveData<Boolean> mIsOrganizer = new MutableLiveData<>();
   private final MutableLiveData<Boolean> showProperties = new MutableLiveData<>(false);
   private final MutableLiveData<String> mLaoName = new MutableLiveData<>("");
+  private final LiveData<List<RollCall>> mRollCalls =
+          Transformations.map(
+                  mCurrentLao,
+                  lao -> lao == null ? new ArrayList<>() : new ArrayList<>(lao.getRollCalls().values()));
   private final LiveData<List<String>> mWitnesses =
       Transformations.map(
           mCurrentLao,
           lao -> lao == null ? new ArrayList<>() : new ArrayList<>(lao.getWitnesses()));
-
   private final LiveData<String> mCurrentLaoName =
       Transformations.map(mCurrentLao, lao -> lao == null ? "" : lao.getName());
 
@@ -104,7 +110,7 @@ public class LaoDetailViewModel extends AndroidViewModel {
    * @param scheduled the scheduled time of the roll call, zero if start type is NOW
    * @return the id of the newly created roll call event, null if fails to create the event
    */
-  public String createNewRollCall(String title, String description, long start, long scheduled) {
+  public RollCall createNewRollCall(String title, String description, long start, long scheduled) {
     Log.d(TAG, "creating a new roll call with title " + title);
 
     Lao lao = getCurrentLao();
@@ -156,7 +162,10 @@ public class LaoDetailViewModel extends AndroidViewModel {
       Log.d(TAG, "failed to retrieve public key", e);
       return null;
     }
-    return createRollCall.getId();
+
+    Log.d(TAG, "new roll call created: " + createRollCall.getName());
+
+    return new RollCall(createRollCall);
   }
 
   /**
@@ -233,6 +242,10 @@ public class LaoDetailViewModel extends AndroidViewModel {
 
   public LiveData<Boolean> getShowProperties() {
     return showProperties;
+  }
+
+  public LiveData<List<RollCall>> getRollCalls() {
+    return mRollCalls;
   }
 
   public LiveData<List<String>> getWitnesses() {

@@ -55,11 +55,11 @@ public class EventExpandableListViewAdapter extends BaseExpandableListAdapter {
     putEventsInMap(events);
   }
 
-  public void replaceList(List<Event> events) {
+  public void replaceList(List<? extends Event> events) {
     setList(events);
   }
 
-  private void setList(List<Event> events) {
+  private void setList(List<? extends Event> events) {
     putEventsInMap(events);
     notifyDataSetChanged();
   }
@@ -260,7 +260,7 @@ public class EventExpandableListViewAdapter extends BaseExpandableListAdapter {
    *
    * @param events
    */
-  private void putEventsInMap(List<Event> events) {
+  private void putEventsInMap(List<? extends Event> events) {
     Collections.sort(events);
     eventsMap = new HashMap<>();
     long now = Instant.now().getEpochSecond();

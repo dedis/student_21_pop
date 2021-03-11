@@ -62,6 +62,7 @@ public class LaoDetailFragment extends Fragment {
 
     setupEventListAdapter();
     setupWitnessListAdapter();
+    setupEventListUpdates();
     setupWitnessListUpdates();
 
     // TODO: Add witness handler
@@ -147,6 +148,17 @@ public class LaoDetailFragment extends Fragment {
     expandableListView.setAdapter(mEventListViewEventAdapter);
     expandableListView.expandGroup(0);
     expandableListView.expandGroup(1);
+  }
+
+  private void setupEventListUpdates() {
+    mLaoDetailViewModel
+            .getRollCalls()
+            .observe(
+                    getActivity(),
+                    rollCalls -> {
+                      Log.d(TAG, "roll call events updated, new size: "+ rollCalls.size());
+                      mEventListViewEventAdapter.replaceList(rollCalls);
+                    });
   }
 
   private void setupSwipeRefresh() {

@@ -1,6 +1,8 @@
 package com.github.dedis.student20_pop.model;
 
 import com.github.dedis.student20_pop.model.event.Event;
+import com.github.dedis.student20_pop.model.network.method.message.data.rollcall.CreateRollCall;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +21,21 @@ public class RollCall extends Event {
 
   public RollCall() {
     this.attendees = new HashSet<>();
+  }
+
+  public RollCall(CreateRollCall createRollCall) {
+    this.id = createRollCall.getId();
+    this.name = createRollCall.getName();
+    this.creation = createRollCall.getCreation();
+
+    switch(createRollCall.getStartType()) {
+      case NOW: this.start = createRollCall.getStartTime();
+      case SCHEDULED: this.scheduled = createRollCall.getStartTime();
+    }
+
+    this.attendees = new HashSet<>();
+    this.location = createRollCall.getLocation();
+    this.description = createRollCall.getDescription().orElseGet(null);
   }
 
   public String getId() {
