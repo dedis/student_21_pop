@@ -166,7 +166,7 @@ jobs:
 
   fe2-android:
     name: Fe2-Android
-    runs-on: macos-latest
+    runs-on: macos-10.15
 
     defaults:
       run:
