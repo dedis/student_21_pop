@@ -9,11 +9,11 @@
 
     <variable
       name="viewModel"
-      type="com.github.dedis.student20_pop.detail.LaoDetailViewModel" />
+      type="com.github.dedis.student21_pop.detail.LaoDetailViewModel" />
 
     <variable
       name="listener"
-      type="com.github.dedis.student20_pop.detail.listeners.WitnessDeleteListener" />
+      type="com.github.dedis.student21_pop.detail.listeners.WitnessDeleteListener" />
 
   </data>
   <androidx.constraintlayout.widget.ConstraintLayout
